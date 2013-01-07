@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:aasg="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/0.8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf" targetNamespace="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/0.8" elementFormDefault="qualified" version="0.08">
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
+	<xs:annotation>
+		<!-- This XSD document, including XML schema, indicates the content requested for data collected from power plant production records for the AASG geothermal data project.  Typically, information includes facility location, reporting interval, gross and net production, and facility capacity at time of record.  The PowerPlantProductionURI for a particular site is the cross-referencing link (foreign key) used to associate the record with additional information and metadata.  Each facility should have a unique PowerPlantProductionURI. -->
+		<!--This XSD document was created on 2012-02-24 by Celia Coleman, AZGS.  This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. -->
+		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
+			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
+			<gmlsf:GMLProfileSchema>
+http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gmlsf:GMLProfileSchema>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="PlantProduction" type="aasg:PlantProductionType" substitutionGroup="gml:_Feature"/>
+	<xs:complexType name="PlantProductionType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="OBJECTID" type="xs:int" minOccurs="0"/>
+					<xs:element name="PlantProductionStatURI">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="PlantProductionStatLabel" type="xs:string"/>
+					<xs:element name="PowerPlantFacilityURI">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="PlantName" type="xs:string"/>
+					<xs:element name="OtherID" type="xs:string" minOccurs="0"/>
+					<xs:element name="Notes" type="xs:string" minOccurs="0"/>
+					<xs:element name="PlantType" type="xs:string"/>
+					<xs:element name="YearCommissioned" type="xs:int"/>
+					<xs:element name="UTM_E" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTM_N" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0"/>
+					<xs:element name="PostalAddress" type="xs:string" minOccurs="0"/>
+					<xs:element name="County" type="xs:string"/>
+					<xs:element name="State" type="xs:string"/>
+					<xs:element name="LatDegree" type="xs:double"/>
+					<xs:element name="LongDegree" type="xs:double"/>
+					<xs:element name="SRS" type="xs:string"/>
+					<xs:element name="LocationUncertaintyStatement" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReportingPeriod" type="xs:string"/>
+					<xs:element name="StartReportInterval" type="xs:string"/>
+					<xs:element name="EndReportInterval" type="xs:string"/>
+					<xs:element name="ReportYear" type="xs:string"/>
+					<xs:element name="Capacity_MW" type="xs:string" minOccurs="0"/>
+					<xs:element name="GrossProduction_MWhr" type="xs:double" minOccurs="0"/>
+					<xs:element name="NetProduction_MWhr" type="xs:double" minOccurs="0"/>
+					<xs:element name="AveragePrice_c_kW-h" type="xs:double" minOccurs="0"/>
+					<xs:element name="RelatedResource" type="xs:string" minOccurs="0"/>
+					<xs:element name="MetadataURI" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="UpdateTimeStamp" type="xs:string"/>
+					<xs:element name="Shape" type="xs:string"/>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
