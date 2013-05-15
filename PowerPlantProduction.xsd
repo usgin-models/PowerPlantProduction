@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:aasg="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/0.8" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf" targetNamespace="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/0.8" elementFormDefault="qualified" version="0.08">
+<xs:schema xmlns:aasg="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf" targetNamespace="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantProduction/1.0" elementFormDefault="qualified" version="1.0">
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
 	<xs:annotation>
 		<!-- This XSD document, including XML schema, indicates the content requested for data collected from power plant production records for the AASG geothermal data project.  Typically, information includes facility location, reporting interval, gross and net production, and facility capacity at time of record.  The PowerPlantProductionURI for a particular site is the cross-referencing link (foreign key) used to associate the record with additional information and metadata.  Each facility should have a unique PowerPlantProductionURI. -->
-		<!--This XSD document was created on 2012-02-24 by Celia Coleman, AZGS.  This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. -->
+		<!--This XSD document was created on 2012-02-24 by Celia Coleman, AZGS, and edited on 5/15/2013 by Christy Caudill for project approval.  This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. -->
 		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
 			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
 			<gmlsf:GMLProfileSchema>
@@ -51,7 +51,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 					<xs:element name="StartReportInterval" type="xs:string"/>
 					<xs:element name="EndReportInterval" type="xs:string"/>
 					<xs:element name="ReportYear" type="xs:string"/>
-					<xs:element name="Capacity_MW" type="xs:string" minOccurs="0"/>
+					<xs:element name="Capacity_MW" type="xs:double" minOccurs="0"/>
 					<xs:element name="GrossProduction_MWhr" type="xs:double" minOccurs="0"/>
 					<xs:element name="NetProduction_MWhr" type="xs:double" minOccurs="0"/>
 					<xs:element name="AveragePrice_c_kW-h" type="xs:double" minOccurs="0"/>
