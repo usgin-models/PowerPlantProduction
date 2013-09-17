@@ -3,8 +3,8 @@
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
 	<xs:annotation>
-		<!-- This XSD document, including XML schema, indicates the content requested for data collected from power plant production records for the AASG geothermal data project.  Typically, information includes facility location, reporting interval, gross and net production, and facility capacity at time of record.  The PowerPlantProductionURI for a particular site is the cross-referencing link (foreign key) used to associate the record with additional information and metadata.  Each facility should have a unique PowerPlantProductionURI. -->
-		<!--This XSD document was created on 2012-02-24 by Celia Coleman, AZGS, and edited on 5/15/2013 by Christy Caudill for project approval.  This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. -->
+		<!-- This XSD document, including XML schema, indicates the content requested for data collected from power plant production records for the AASG geothermal data project. Typically, information includes facility location, reporting interval, gross and net production, and facility capacity at time of record. The PowerPlantProductionURI for a particular site is the cross-referencing link (foreign key) used to associate the record with additional information and metadata.  Each facility should have a unique PowerPlantProductionURI. -->
+		<!--Annotated version 1.0.1. This XSD document was created on 2012-02-24 by Celia Coleman, AZGS, and edited on 5/15/2013 by Christy Caudill for project approval. This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. Field Description annotations standardized 2013-08-22 by Esty Pape, AZGS.-->
 		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
 			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
 			<gmlsf:GMLProfileSchema>
@@ -16,55 +16,173 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="OBJECTID" type="xs:int" minOccurs="0"/>
+					<xs:element name="OBJECTID" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Integer record count, added by ArcGIS servers during service deployment; not required but cannot be removed when deploying from ArcGIS feature class. Not user maintained, so this element appears in XML implementation but not in the Content Model Template.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="PlantProductionStatURI">
+						<xs:annotation>
+							<xs:documentation>Unique identifier for this observation. This is the identifier (Uniform Resource Identifier) that will be used to cross-reference data, samples, and other observations to the observation represented by this record. Best practice is to define an http URI that will dereference to a normative description of the observation. USGIN URI's may be redirected to any URL using the http://resources.usgin.org redirector; contact the USGIN development team at AZGS for instructions.  </xs:documentation>
+						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="PlantProductionStatLabel" type="xs:string"/>
+					<xs:element name="PlantProductionStatLabel" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Short text string for labeling the feature on maps. Can be the same as feature name. A label may be an OtherLocationName, OtherID or the Name or some combination.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
 					<xs:element name="PowerPlantFacilityURI">
+						<xs:annotation>
+							<xs:documentation>Unique identifier that specifies the feature represented: e.g. a geologic feature, aquifer or facility structure. Ideally, the identifier is an http URI that will dereference to a known, useful representation of the feature. This identifier will be used to cross reference the feature to other information related to this feature.</xs:documentation>
+						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="PlantName" type="xs:string"/>
-					<xs:element name="OtherID" type="xs:string" minOccurs="0"/>
-					<xs:element name="Notes" type="xs:string" minOccurs="0"/>
-					<xs:element name="PlantType" type="xs:string"/>
-					<xs:element name="YearCommissioned" type="xs:int"/>
-					<xs:element name="UTM_E" type="xs:double" minOccurs="0"/>
-					<xs:element name="UTM_N" type="xs:double" minOccurs="0"/>
-					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0"/>
-					<xs:element name="PostalAddress" type="xs:string" minOccurs="0"/>
-					<xs:element name="County" type="xs:string"/>
-					<xs:element name="State" type="xs:string"/>
-					<xs:element name="LatDegree" type="xs:double"/>
-					<xs:element name="LongDegree" type="xs:double"/>
-					<xs:element name="SRS" type="xs:string"/>
-					<xs:element name="LocationUncertaintyStatement" type="xs:string" minOccurs="0"/>
-					<xs:element name="ReportingPeriod" type="xs:string"/>
-					<xs:element name="StartReportInterval" type="xs:string"/>
-					<xs:element name="EndReportInterval" type="xs:string"/>
-					<xs:element name="ReportYear" type="xs:string"/>
-					<xs:element name="Capacity_MW" type="xs:double" minOccurs="0"/>
-					<xs:element name="GrossProduction_MWhr" type="xs:double" minOccurs="0"/>
-					<xs:element name="NetProduction_MWhr" type="xs:double" minOccurs="0"/>
-					<xs:element name="AveragePrice_c_kW-h" type="xs:double" minOccurs="0"/>
-					<xs:element name="RelatedResource" type="xs:string" minOccurs="0"/>
+					<xs:element name="PlantName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Common or human-readable name by which the feature  is known. Recommend using only web-safe characters (a-z A-Z 0-9 _-.) in the name. Be consistent in the naming convention used within any given dataset.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
+					<xs:element name="OtherID" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Alternative identifier(s) for the feature. 'Indicate the authority from which the OtherID is derived with a short (lower case) prefix delimited by a colon ':' If identifiers from multiple different authorities are available, delimit these identifiers with the pipe '|' character. For example, if a well were known to the Arizona Geological Survey (AZGS) by the id number 1337, the prefix would be azgs: and the identifier string would be azgs:1337. Any such prefixes used to scope identifiers should be explained in the dataset metadata.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
+					<xs:element name="Notes" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Any additional information to be provided, including description and other data not captured by the template, details about collection method, contact information for related parties (original collector, project PI), collection platform or Launch, etc.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
+					<xs:element name="PlantType" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Dry Steam; Flash Steam; Binary Cycle; Single Flash; Double Flash. If Unknown or missing place "nil:missing" or "nil:unknown"</xs:documentation>
+						</xs:annotation>
+						</xs:element>
+					<xs:element name="YearCommissioned" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Date for the record (year in which the first power plant at the site began operation). Day, month and year must be specified; Excel will display using ISO 8601 date and time (yyyy-mm-ddT:hh:mm) format. If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
+						</xs:annotation></xs:element>
+					<xs:element name="UTM_E" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>UTM easting coordinate as decimal number.</xs:documentation>
+						</xs:annotation></xs:element>
+					<xs:element name="UTM_N" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>UTM northing coordinate as decimal number.</xs:documentation>
+						</xs:annotation></xs:element>
+					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The datum and UTM zone for the reported coordinates. Datum for most locations should be NAD27 or NAD83.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PostalAddress" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Postal address for facility. Street, City.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="County" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Required. County name. If unknown or not applicable use 'missing'. If offshore, specify 'offshore' in this field.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="State" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Required. State name without abbreviations. If unknown or not applicable use 'missing'. For offshore locations, specify the governing or nearest state and list the county as 'offshore'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LatDegree" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>Latitude coordinate for the surface location of the feature (use center point for areas); values should be provided with at least 4 significant digits for sufficient precision (7 decimal places is recommended by the USGS (OFR 02-463, p. 6). Use decimal degrees.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LongDegree" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>Longitude coordinate for the surface location of the feature (use center point for areas); values should be provided with at least 4 significant digits for sufficient precision (7 decimal places is recommended by the USGS (OFR 02-463, p. 6). Use decimal degrees.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SRS" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The spatial reference system. It is recommended that an EPSG code be used to identify the SRS used to specify the location.  If an EPSG code is used, identify it as such with the prefix 'EPSG:' For common EPSG codes, see the Data Valid Terms tab. EPSG:4326 is the identifier for WGS84, and should be the text in this field. EPSG stands for European Petroleum Survey Group. EPSSG codes can be dereferenced by putting the code in this URL (replace 4326) http://spatialreference.org/ref/epsg/4326/.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LocationUncertaintyStatement" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Information on how the original location was determined, e.g.: 1:250,000 map, gps unit, Google Earth, PLSS Conversion, Spatial Datum Conversion, e.g., NAD27 to WGS84.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReportingPeriod" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Time interval of reporting period: year, month, week or day.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StartReportInterval" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Date reporting period for this observation record starts (Format: 2012-06-22T00:00). If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EndReportInterval" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Date reporting period for this observation record ends (Format: 2012-06-22T00:00). If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReportYear" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Production year of data reported, formatted 'YYYY'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Capacity_MW" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nameplate capacity of the power plant in MW. Included as a search parameter.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GrossProduction_MWhr" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Reported gross production from the power plant for the reporting period in MWhr.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NetProduction_MWhr" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Reported net production (minus any parasitic loads) from the power plant for the reporting period in MWhr.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AveragePrice_c_kW-h" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Total net production for the state divided by the gross receipts reported by the state department of taxation. Units are cents per kilowatt-hour.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RelatedResource" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>This may be one to many http links to resources (logs, pictures or other documents if available online. Should be an http:// address (URL)) related to the observation described in each record. Delimit multiple values with the pipe '|' character.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="MetadataURI" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>URI identifying (and ideally dereferencing to get) a full formal metadata record for the observation report. A time series of observations may all reference the same metadata record that provides contact information and details on procedure, etc.</xs:documentation>
+						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="UpdateTimeStamp" type="xs:string"/>
-					<xs:element name="Shape" type="xs:string"/>
+					<xs:element name="UpdateTimeStamp" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Date of last time line of data was updated or corrected by the service provider.(Format: 2012-06-22T00:00).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Shape" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Added by GIS for WFS service; this element appears in the xml output, but is generated during service deployment from the latitude and longitude, therefore it doesn't appear in the template.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
 					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
