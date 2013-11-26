@@ -4,7 +4,7 @@
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
 	<xs:annotation>
 		<!-- This XSD document, including XML schema, indicates the content requested for data collected from power plant production records for the AASG geothermal data project. Typically, information includes facility location, reporting interval, gross and net production, and facility capacity at time of record. The PowerPlantProductionURI for a particular site is the cross-referencing link (foreign key) used to associate the record with additional information and metadata.  Each facility should have a unique PowerPlantProductionURI. -->
-		<!--Annotated version 1.0.1. This XSD document was created on 2012-02-24 by Celia Coleman, AZGS, and edited on 5/15/2013 by Christy Caudill for project approval. This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. Field Description annotations standardized 2013-08-22 by Esty Pape, AZGS.-->
+		<!-- Version 1.0.2 changed date types to 'dateTime'. Annotated version 1.0.1. This XSD document was created on 2012-02-24 by Celia Coleman, AZGS, and edited on 5/15/2013 by Christy Caudill for project approval. This schema is based on the data available in the AASG Web Feature Services created for the power plants in Nevada. Field Description annotations standardized 2013-08-22 by Esty Pape, AZGS.-->
 		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
 			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
 			<gmlsf:GMLProfileSchema>
@@ -35,7 +35,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 						<xs:annotation>
 							<xs:documentation>Short text string for labeling the feature on maps. Can be the same as feature name. A label may be an OtherLocationName, OtherID or the Name or some combination.</xs:documentation>
 						</xs:annotation>
-						</xs:element>
+					</xs:element>
 					<xs:element name="PowerPlantFacilityURI">
 						<xs:annotation>
 							<xs:documentation>Unique identifier that specifies the feature represented: e.g. a geologic feature, aquifer or facility structure. Ideally, the identifier is an http URI that will dereference to a known, useful representation of the feature. This identifier will be used to cross reference the feature to other information related to this feature.</xs:documentation>
@@ -50,34 +50,37 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 						<xs:annotation>
 							<xs:documentation>Common or human-readable name by which the feature  is known. Recommend using only web-safe characters (a-z A-Z 0-9 _-.) in the name. Be consistent in the naming convention used within any given dataset.</xs:documentation>
 						</xs:annotation>
-						</xs:element>
+					</xs:element>
 					<xs:element name="OtherID" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Alternative identifier(s) for the feature. 'Indicate the authority from which the OtherID is derived with a short (lower case) prefix delimited by a colon ':' If identifiers from multiple different authorities are available, delimit these identifiers with the pipe '|' character. For example, if a well were known to the Arizona Geological Survey (AZGS) by the id number 1337, the prefix would be azgs: and the identifier string would be azgs:1337. Any such prefixes used to scope identifiers should be explained in the dataset metadata.</xs:documentation>
 						</xs:annotation>
-						</xs:element>
+					</xs:element>
 					<xs:element name="Notes" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Any additional information to be provided, including description and other data not captured by the template, details about collection method, contact information for related parties (original collector, project PI), collection platform or Launch, etc.</xs:documentation>
 						</xs:annotation>
-						</xs:element>
+					</xs:element>
 					<xs:element name="PlantType" type="xs:string">
 						<xs:annotation>
 							<xs:documentation>Dry Steam; Flash Steam; Binary Cycle; Single Flash; Double Flash. If Unknown or missing place "nil:missing" or "nil:unknown"</xs:documentation>
 						</xs:annotation>
-						</xs:element>
-					<xs:element name="YearCommissioned" type="xs:int">
+					</xs:element>
+					<xs:element name="YearCommissioned" type="xs:dateTime">
 						<xs:annotation>
 							<xs:documentation>Date for the record (year in which the first power plant at the site began operation). Day, month and year must be specified; Excel will display using ISO 8601 date and time (yyyy-mm-ddT:hh:mm) format. If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
-						</xs:annotation></xs:element>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="UTM_E" type="xs:double" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>UTM easting coordinate as decimal number.</xs:documentation>
-						</xs:annotation></xs:element>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="UTM_N" type="xs:double" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>UTM northing coordinate as decimal number.</xs:documentation>
-						</xs:annotation></xs:element>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>The datum and UTM zone for the reported coordinates. Datum for most locations should be NAD27 or NAD83.</xs:documentation>
@@ -123,12 +126,12 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 							<xs:documentation>Time interval of reporting period: year, month, week or day.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="StartReportInterval" type="xs:string">
+					<xs:element name="StartReportInterval" type="xs:dateTime">
 						<xs:annotation>
 							<xs:documentation>Date reporting period for this observation record starts (Format: 2012-06-22T00:00). If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="EndReportInterval" type="xs:string">
+					<xs:element name="EndReportInterval" type="xs:dateTime">
 						<xs:annotation>
 							<xs:documentation>Date reporting period for this observation record ends (Format: 2012-06-22T00:00). If only the year is known, enter month and day as 'Jan. 1', (or '1/1/', or '1-1-', or 'January 1,'). All dates will be converted to yyyy-mm-ddThh:mm.</xs:documentation>
 						</xs:annotation>
@@ -173,7 +176,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="UpdateTimeStamp" type="xs:string">
+					<xs:element name="UpdateTimeStamp" type="xs:dateTime">
 						<xs:annotation>
 							<xs:documentation>Date of last time line of data was updated or corrected by the service provider.(Format: 2012-06-22T00:00).</xs:documentation>
 						</xs:annotation>
@@ -182,7 +185,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 						<xs:annotation>
 							<xs:documentation>Added by GIS for WFS service; this element appears in the xml output, but is generated during service deployment from the latitude and longitude, therefore it doesn't appear in the template.</xs:documentation>
 						</xs:annotation>
-						</xs:element>
+					</xs:element>
 					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
