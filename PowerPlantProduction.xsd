@@ -156,7 +156,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 							<xs:documentation>Reported net production (minus any parasitic loads) from the power plant for the reporting period in MWhr.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="AveragePrice_c_kW-h" type="xs:double" minOccurs="0">
+					<xs:element name="AveragePrice_ckWh" type="xs:double" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Total net production for the state divided by the gross receipts reported by the state department of taxation. Units are cents per kilowatt-hour.</xs:documentation>
 						</xs:annotation>
